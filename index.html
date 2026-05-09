@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吉田内科クリニック | 内科・生活習慣病・健康診断</title>
+  <meta name="description" content="吉田内科クリニック。内科・生活習慣病・健康診断。地域の皆様の健康を守ります。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════
+       CSS 変数
+    ══════════════════════════════════════ */
+    :root {
+      --green:      #2E8B6E;
+      --green-dark: #1A5E4A;
+      --green-light:#E8F5F0;
+      --blue:       #1565C0;
+      --blue-light: #E3EDF9;
+      --red:        #D32F2F;
+      --red-light:  #FFEBEE;
+      --gold:       #E8A020;
+      --text:       #2C2C2C;
+      --text-2:     #666666;
+      --border:     #C8DDD8;
+      --bg:         #FFFFFF;
+      --bg-2:       #F5FAF8;
+      --nav-h:      70px;
+    }
+
+    /* ══════════════════════════════════════
+       リセット・ベース
+    ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .section-wrap { padding: 70px 0; }
+    .section-wrap.bg-2 { background: var(--bg-2); }
+
+    /* セクション見出し */
+    .section-head {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-head h2 {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--blue);
+      letter-spacing: .08em;
+      margin-bottom: .4rem;
+    }
+    .section-head .sub {
+      font-size: .85rem;
+      color: var(--text-2);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .section-head::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--green);
+      margin: .8rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ══════════════════════════════════════
+       ヘッダー
+    ══════════════════════════════════════ */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: #fff;
+      border-bottom: 3px solid var(--green);
+      z-index: 1000;
+      transition: box-shadow .3s;
+    }
+    .site-header.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.12); }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    /* ロゴ */
+    .logo-area { display: flex; align-items: center; gap: .75rem; }
+    .logo-mark {
+      width: 44px; height: 44px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+    .logo-text { line-height: 1.2; }
+    .logo-text .clinic-name {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      letter-spacing: .06em;
+    }
+    .logo-text .clinic-sub {
+      font-size: .72rem;
+      color: var(--text-2);
+      letter-spacing: .08em;
+    }
+
+    /* ナビ */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+    }
+    .nav-links a {
+      padding: .5rem 1rem;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--text);
+      border-radius: 4px;
+      transition: background .2s, color .2s;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { background: var(--green-light); color: var(--green-dark); }
+
+    /* 電話番号 */
+    .header-tel {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .header-tel .tel-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: .04em;
+    }
+    .header-tel .tel-num::before { content: '☎ '; font-size: .9rem; }
+    .header-tel .tel-note {
+      font-size: .7rem;
+      color: var(--text-2);
+      letter-spacing: .06em;
+    }
+
+    /* ハンバーガー */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--green-dark);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: #fff;
+      border-bottom: 2px solid var(--green);
+      padding: 1rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: .2rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      padding: .9rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    /* ══════════════════════════════════════
+       ヒーロースライダー
+    ══════════════════════════════════════ */
+    #hero {
+      margin-top: var(--nav-h);
+      overflow: hidden;
+      position: relative;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform .8s cubic-bezier(0.77, 0, 0.175, 1);
+      will-change: transform;
+    }
+    .slide {
+      min-width: 100%;
+      height: clamp(240px, 45vw, 560px);
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    /* ▼ 各スライドの背景画像（後で実際の写真に差し替え） */
+    .slide:nth-child(1) { background: linear-gradient(135deg, #1A5E4A 0%, #2E8B6E 50%, #4AADA8 100%); }
+    .slide:nth-child(2) { background: linear-gradient(135deg, #1565C0 0%, #1976D2 50%, #42A5F5 100%); }
+    .slide:nth-child(3) { background: linear-gradient(135deg, #2E8B6E 0%, #1565C0 50%, #1A5E4A 100%); }
+
+    /* 実際の画像を使う場合:
+       .slide:nth-child(1) { background-image: url('images/slide1.jpg'); background-size: cover; } */
+
+    .slide-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.28);
+    }
+    .slide-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+      padding: 0 2rem;
+    }
+    .slide-content .catch {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 3rem);
+      line-height: 1.5;
+      text-shadow: 0 2px 12px rgba(0,0,0,.4);
+      margin-bottom: .8rem;
+    }
+    .slide-content .sub {
+      font-size: clamp(.85rem, 2vw, 1.1rem);
+      opacity: .9;
+      letter-spacing: .1em;
+    }
+
+    /* ドット */
+    .slider-dots {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+    .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+      cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .dot.active { background: #fff; transform: scale(1.3); }
+
+    /* 矢印 */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.25);
+      color: #fff;
+      border: none;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+    .slider-arrow:hover { background: rgba(255,255,255,.5); }
+    .slider-arrow.prev { left: 16px; }
+    .slider-arrow.next { right: 16px; }
+
+    /* ══════════════════════════════════════
+       お知らせ
+    ══════════════════════════════════════ */
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .news-box h3 {
+      font-size: 1rem;
+      color: var(--green-dark);
+      border-left: 4px solid var(--green);
+      padding-left: .8rem;
+      margin-bottom: 1rem;
+      letter-spacing: .06em;
+    }
+    .news-list { list-style: none; }
+    .news-item {
+      display: flex;
+      gap: 1rem;
+      padding: .8rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: .9rem;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-date {
+      color: var(--green);
+      font-weight: 500;
+      white-space: nowrap;
+      font-size: .85rem;
+    }
+    .news-text { color: var(--text); }
+    .news-badge {
+      display: inline-block;
+      font-size: .7rem;
+      padding: .1rem .5rem;
+      border-radius: 3px;
+      margin-right: .4rem;
+      font-weight: 700;
+    }
+    .badge-important { background: var(--red); color: #fff; }
+    .badge-info      { background: var(--blue); color: #fff; }
+    .badge-new       { background: var(--gold); color: #fff; }
+
+    /* 注意書きボックス */
+    .notice-box {
+      padding: 1rem 1.2rem;
+      border-radius: 6px;
+      font-size: .88rem;
+      line-height: 1.8;
+    }
+    .notice-box.red   { background: var(--red-light); border-left: 4px solid var(--red); color: #b71c1c; }
+    .notice-box.green { background: var(--green-light); border-left: 4px solid var(--green); color: var(--green-dark); }
+    .notice-box.blue  { background: var(--blue-light); border-left: 4px solid var(--blue); color: #0d47a1; }
+    .notice-box + .notice-box { margin-top: .8rem; }
+
+    /* ══════════════════════════════════════
+       診療時間
+    ══════════════════════════════════════ */
+    .hours-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    .hours-table th, .hours-table td {
+      border: 1px solid var(--border);
+      padding: .65rem .8rem;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .hours-table thead th {
+      background: var(--green);
+      color: #fff;
+      font-weight: 500;
+      font-size: .85rem;
+    }
+    .hours-table thead th:first-child {
+      background: var(--green-dark);
+    }
+    .hours-table tbody th {
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .hours-table .circle { color: var(--green-dark); font-size: 1.2rem; }
+    .hours-table .cross  { color: var(--red); font-weight: 700; }
+    .hours-table .triangle { color: var(--gold); }
+    .hours-table .holiday { background: #FFF9F9; color: var(--red); font-weight: 700; }
+    .hours-note {
+      margin-top: 1rem;
+      font-size: .82rem;
+      color: var(--text-2);
+      line-height: 1.9;
+    }
+    .hours-note li { margin-left: 1rem; }
+
+    /* 診療時間カード */
+    .hours-summary {
+      background: var(--green-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .hours-summary h3 {
+      font-size: 1rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--green);
+      letter-spacing: .06em;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .6rem 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: .9rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .label { color: var(--text-2); }
+    .hours-row .time  { font-weight: 700; color: var(--green-dark); font-size: 1.05rem; }
+    .closed-info {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 6px;
+      font-size: .85rem;
+      border: 1px solid var(--border);
+    }
+    .closed-info .label { color: var(--red); font-weight: 700; margin-bottom: .4rem; }
+
+    /* ══════════════════════════════════════
+       カレンダー
+    ══════════════════════════════════════ */
+    .calendar-inner {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .cal-header h3 {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+    }
+    .cal-nav {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cal-nav:hover { background: var(--green-dark); }
+    .cal-grid { width: 100%; border-collapse: collapse; }
+    .cal-grid th {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: .6rem .3rem;
+      font-size: .85rem;
+      font-weight: 500;
+    }
+    .cal-grid th:first-child  { background: #c62828; }
+    .cal-grid th:last-child   { background: #1565C0; }
+    .cal-grid td {
+      text-align: center;
+      padding: .55rem .3rem;
+      font-size: .9rem;
+      border: 1px solid #e0e0e0;
+      min-width: 38px;
+      position: relative;
+      vertical-align: middle;
+    }
+    .cal-grid td.today { background: #FFF9C4; font-weight: 700; }
+    .cal-grid td.open  { background: #fff; color: var(--text); }
+    .cal-grid td.closed {
+      background: var(--red-light);
+      color: var(--red);
+      font-weight: 700;
+    }
+    .cal-grid td.closed::after {
+      content: '✕';
+      display: block;
+      font-size: .65rem;
+      color: var(--red);
+      line-height: 1;
+    }
+    .cal-grid td.sun  { color: var(--red); }
+    .cal-grid td.sat  { color: #1565C0; }
+    .cal-grid td.other { color: #ccc; background: #fafafa; }
+    .cal-grid td.holiday {
+      background: #FFF0F0;
+      color: var(--red);
+    }
+    .cal-legend {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: .8rem;
+      font-size: .8rem;
+      flex-wrap: wrap;
+    }
+    .legend-item { display: flex; align-items: center; gap: .4rem; }
+    .legend-box {
+      width: 16px; height: 16px;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+    }
+    .legend-box.open   { background: #fff; }
+    .legend-box.closed { background: var(--red-light); border-color: var(--red); }
+    .legend-box.today  { background: #FFF9C4; }
+
+    /* カレンダー右サイド */
+    .cal-info-box {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .cal-info-box h3 {
+      font-size: .95rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--green);
+    }
+    .cal-info-list { list-style: none; font-size: .88rem; }
+    .cal-info-list li {
+      padding: .5rem 0;
+      border-bottom: 1px dashed var(--border);
+      color: var(--text-2);
+      display: flex;
+      gap: .5rem;
+    }
+    .cal-info-list li:last-child { border-bottom: none; }
+    .cal-info-list li::before { content: '●'; color: var(--green); flex-shrink: 0; }
+
+    /* ══════════════════════════════════════
+       医院案内
+    ══════════════════════════════════════ */
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-img-placeholder {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--green-light), #C8DDD8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--green);
+      border: 1px solid var(--border);
+    }
+    .about-text h3 {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: 1.3rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+    }
+    .about-text p {
+      color: var(--text-2);
+      line-height: 2;
+      font-size: .93rem;
+      margin-bottom: 1.2rem;
+    }
+    .about-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      margin-top: 1.5rem;
+    }
+    .about-table tr { border-bottom: 1px solid var(--border); }
+    .about-table th {
+      width: 30%;
+      text-align: left;
+      padding: .8rem .5rem;
+      color: var(--green-dark);
+      font-weight: 500;
+      vertical-align: top;
+    }
+    .about-table td {
+      padding: .8rem .5rem;
+      color: var(--text);
+    }
+
+    /* カテゴリカード */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .category-card {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .2s, box-shadow .2s;
+      background: #fff;
+    }
+    .category-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+    .category-card-img {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+    .category-card:nth-child(1) .category-card-img { background: linear-gradient(135deg, var(--green-light), #b2dfdb); }
+    .category-card:nth-child(2) .category-card-img { background: linear-gradient(135deg, var(--blue-light), #bbdefb); }
+    .category-card:nth-child(3) .category-card-img { background: linear-gradient(135deg, #fff8e1, #ffecb3); }
+    .category-card-body {
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .category-card-body h4 {
+      color: var(--green-dark);
+      font-size: 1rem;
+      margin-bottom: .4rem;
+    }
+    .category-card-body p {
+      font-size: .8rem;
+      color: var(--text-2);
+    }
+
+    /* ══════════════════════════════════════
+       アクセス
+    ══════════════════════════════════════ */
+    .access-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .map-placeholder {
+      aspect-ratio: 4/3;
+      background: #e8eaf0;
+      border: 2px dashed #aaa;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      gap: .8rem;
+      font-size: .9rem;
+    }
+    .map-placeholder span { font-size: 2.5rem; }
+    /* ↑ マップを埋め込むときはここのdivをiframeに置き換え:
+       <iframe src="https://maps.google.com/maps?q=..." width="100%" height="100%" frameborder="0" style="border:0;border-radius:10px;"></iframe>
+    */
+    .access-info h3 {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 1.2rem;
+    }
+    .access-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    .access-table tr { border-bottom: 1px solid var(--border); }
+    .access-table th {
+      width: 28%;
+      text-align: left;
+      padding: .8rem .5rem;
+      color: var(--green-dark);
+      font-weight: 500;
+      vertical-align: top;
+    }
+    .access-table td {
+      padding: .8rem .5rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .btn-access {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.2rem;
+      padding: .75rem 1.6rem;
+      background: var(--green);
+      color: #fff;
+      border-radius: 6px;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: background .2s;
+    }
+    .btn-access:hover { background: var(--green-dark); }
+
+    /* ══════════════════════════════════════
+       フッター
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,.85);
+      padding: 40px 0 0;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+    .footer-clinic-name {
+      font-family: 'Kosugi Maru', sans-serif;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: .8rem;
+    }
+    .footer-info {
+      font-size: .85rem;
+      line-height: 2;
+      color: rgba(255,255,255,.75);
+    }
+    .footer-col h4 {
+      font-size: .85rem;
+      letter-spacing: .15em;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .footer-col ul li a {
+      font-size: .88rem;
+      color: rgba(255,255,255,.7);
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-bottom {
+      padding: 1.2rem 0;
+      text-align: center;
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* ══════════════════════════════════════
+       ページトップボタン
+    ══════════════════════════════════════ */
+    .pagetop {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px; height: 48px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s, transform .3s;
+      z-index: 500;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+    .pagetop.show { opacity: 1; pointer-events: all; }
+    .pagetop:hover { transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════
+       レスポンシブ
+    ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .news-grid, .hours-inner, .about-inner, .access-inner, .calendar-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .category-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-links, .header-tel { display: none; }
+      .nav-hamburger { display: flex; }
+      .header-tel-sp {
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+        color: var(--green-dark);
+        font-weight: 700;
+        font-size: .95rem;
+      }
+      .section-wrap { padding: 48px 0; }
+      .slide { height: 52vw; min-height: 200px; }
+      .slide-content .catch { font-size: clamp(1.1rem, 5vw, 2rem); }
+      .category-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .cal-grid td { min-width: 0; padding: .4rem .1rem; font-size: .78rem; }
+      .hours-table { font-size: .8rem; }
+      .hours-table th, .hours-table td { padding: .45rem .4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================
+       ヘッダー
+  ==================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <div class="header-inner">
+
+        <!-- ロゴ -->
+        <a href="#" class="logo-area">
+          <div class="logo-mark">🏥</div>
+          <div class="logo-text">
+            <!-- ▼ クリニック名を変更 -->
+            <div class="clinic-name">吉田内科クリニック</div>
+            <div class="clinic-sub">YOSHIDA NAIKA CLINIC</div>
+          </div>
+        </a>
+
+        <!-- ナビ（PC） -->
+        <nav class="nav-links">
+          <a href="#news">お知らせ</a>
+          <a href="#hours">診療時間</a>
+          <a href="#calendar">休診日</a>
+          <a href="#about">医院案内</a>
+          <a href="#access">アクセス</a>
+        </nav>
+
+        <!-- 電話番号（PC） -->
+        <div class="header-tel">
+          <!-- ▼ 電話番号を変更 -->
+          <div class="tel-num">000-000-0000</div>
+          <div class="tel-note">受付時間 8:30〜12:00 / 15:00〜18:00</div>
+        </div>
+
+        <!-- 電話ボタン（SP） -->
+        <a href="tel:0000000000" class="header-tel-sp" style="display:none">
+          📞 電話
+        </a>
+
+        <!-- ハンバーガー -->
+        <div class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()">
+          <span></span><span></span><span></span>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- モバイルナビ -->
+  <nav class="nav-mobile" id="mobileNav">
+    <a href="#news"     onclick="toggleMobileNav()">お知らせ</a>
+    <a href="#hours"    onclick="toggleMobileNav()">診療時間</a>
+    <a href="#calendar" onclick="toggleMobileNav()">休診日カレンダー</a>
+    <a href="#about"    onclick="toggleMobileNav()">医院案内</a>
+    <a href="#access"   onclick="toggleMobileNav()">アクセス</a>
+    <a href="tel:0000000000" style="color:var(--green-dark);font-weight:700;">📞 000-000-0000</a>
+  </nav>
+
+  <!-- ====================================
+       ヒーロースライダー
+  ==================================== -->
+  <section id="hero">
+    <div class="slider-track" id="sliderTrack">
+
+      <!-- スライド1（▼写真に変える場合: background-imageをstyleで指定 or imgタグを入れる） -->
+      <div class="slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="catch">あなたの健康を、<br>地域とともに守ります。</p>
+          <p class="sub">吉田内科クリニック</p>
+        </div>
+      </div>
+
+      <!-- スライド2 -->
+      <div class="slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="catch">安心・丁寧な診療を<br>心がけています。</p>
+          <p class="sub">内科・生活習慣病・健康診断</p>
+        </div>
+      </div>
+
+      <!-- スライド3 -->
+      <div class="slide">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="catch">お気軽に<br>ご相談ください。</p>
+          <p class="sub">初診の方も歓迎しております</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 矢印 -->
+    <button class="slider-arrow prev" id="sliderPrev">&#8592;</button>
+    <button class="slider-arrow next" id="sliderNext">&#8594;</button>
+
+    <!-- ドット -->
+    <div class="slider-dots" id="sliderDots"></div>
+  </section>
+
+  <!-- ====================================
+       お知らせ
+  ==================================== -->
+  <section id="news" class="section-wrap">
+    <div class="container">
+      <div class="section-head">
+        <h2>お知らせ</h2>
+        <p class="sub">Information</p>
+      </div>
+
+      <div class="news-grid">
+        <!-- 左：お知らせ一覧 -->
+        <div class="news-box">
+          <h3>📋 新着情報</h3>
+          <!-- ▼ お知らせは JS の NEWS_ITEMS 配列を編集してください -->
+          <ul class="news-list" id="newsList"></ul>
+        </div>
+
+        <!-- 右：注意事項 -->
+        <div class="news-box">
+          <h3>⚠️ ご来院の方へ</h3>
+          <div class="notice-box red">
+            <!-- ▼ 必要に応じて内容を変更 -->
+            発熱・咳などの症状がある方は、お電話にてご連絡のうえご来院ください。
+          </div>
+          <div class="notice-box green" style="margin-top:.8rem">
+            マイナ保険証をご持参いただけますと、よりスムーズにご案内できます。
+          </div>
+          <div class="notice-box blue" style="margin-top:.8rem">
+            ご予約は電話にて承っております。お気軽にお電話ください。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       診療時間
+  ==================================== -->
+  <section id="hours" class="section-wrap bg-2">
+    <div class="container">
+      <div class="section-head">
+        <h2>診療時間</h2>
+        <p class="sub">Clinic Hours</p>
+      </div>
+
+      <div class="hours-inner">
+        <!-- 診療時間テーブル -->
+        <div>
+          <table class="hours-table">
+            <thead>
+              <tr>
+                <th>診療時間</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+                <th class="holiday">日・祝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- ▼ ○×△を実際の診療スケジュールに合わせて変更 -->
+              <tr>
+                <th>午前<br><small>8:30〜12:00</small></th>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="cross holiday">✕</td>
+              </tr>
+              <tr>
+                <th>午後<br><small>15:00〜18:00</small></th>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="cross">✕</td>
+                <td class="circle">○</td>
+                <td class="circle">○</td>
+                <td class="cross">✕</td>
+                <td class="cross holiday">✕</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="hours-note">
+            <li>水曜・土曜の午後、日曜・祝日は休診です。</li>
+            <li>第3土曜日は休診となる場合があります。カレンダーでご確認ください。</li>
+            <li>△は予約のみとなります。</li>
+          </ul>
+        </div>
+
+        <!-- 右サイド：サマリー -->
+        <div>
+          <div class="hours-summary">
+            <h3>🕐 受付時間のご案内</h3>
+            <div class="hours-row">
+              <span class="label">午前の受付</span>
+              <span class="time">8:30 〜 12:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="label">午後の受付</span>
+              <span class="time">15:00 〜 18:00</span>
+            </div>
+            <div class="hours-row">
+              <span class="label">電話受付</span>
+              <span class="time">8:30 〜 18:00</span>
+            </div>
+
+            <div class="closed-info">
+              <div class="label">🔴 定期休診日</div>
+              <!-- ▼ 実際の休診日に変更 -->
+              日曜日・祝日・水曜午後・土曜午後
+            </div>
+          </div>
+
+          <!-- お電話ボタン -->
+          <div style="text-align:center; margin-top:1.5rem;">
+            <a href="tel:0000000000" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--green);color:#fff;padding:.9rem 2rem;border-radius:8px;font-size:1.1rem;font-weight:700;letter-spacing:.06em;">
+              📞 000-000-0000
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       休診日カレンダー
+  ==================================== -->
+  <section id="calendar" class="section-wrap">
+    <div class="container">
+      <div class="section-head">
+        <h2>休診日カレンダー</h2>
+        <p class="sub">Closed Day Calendar</p>
+      </div>
+
+      <div class="calendar-inner">
+        <!-- カレンダー本体 -->
+        <div>
+          <div class="cal-header">
+            <button class="cal-nav" id="calPrev">&#8592;</button>
+            <h3 id="calTitle"></h3>
+            <button class="cal-nav" id="calNext">&#8594;</button>
+          </div>
+          <table class="cal-grid" id="calGrid">
+            <thead>
+              <tr>
+                <th>日</th><th>月</th><th>火</th><th>水</th>
+                <th>木</th><th>金</th><th>土</th>
+              </tr>
+            </thead>
+            <tbody id="calBody"></tbody>
+          </table>
+          <div class="cal-legend">
+            <div class="legend-item"><div class="legend-box open"></div>診療日</div>
+            <div class="legend-item"><div class="legend-box closed"></div>休診日</div>
+            <div class="legend-item"><div class="legend-box today"></div>今日</div>
+          </div>
+        </div>
+
+        <!-- 右：説明 -->
+        <div class="cal-info-box">
+          <h3>🗓 休診日について</h3>
+          <ul class="cal-info-list">
+            <!-- ▼ 必要に応じて内容を変更 -->
+            <li>日曜日・祝日は休診です</li>
+            <li>水曜午後・土曜午後は休診です</li>
+            <li>第3土曜日は休診となる場合があります</li>
+            <li>年末年始（12/30〜1/3）は休診です</li>
+            <li>臨時休診はお知らせ欄でご案内します</li>
+          </ul>
+
+          <div style="margin-top:1.2rem; padding:1rem; background:#fff; border-radius:6px; border:1px solid var(--border); font-size:.85rem; color:var(--text-2); line-height:1.9;">
+            急な休診・変更はお電話または<br>お知らせ欄でご確認ください。<br>
+            <strong style="color:var(--green-dark);">TEL: 000-000-0000</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       医院案内
+  ==================================== -->
+  <section id="about" class="section-wrap bg-2">
+    <div class="container">
+      <div class="section-head">
+        <h2>医院案内</h2>
+        <p class="sub">About Clinic</p>
+      </div>
+
+      <div class="about-inner">
+        <!-- 写真プレースホルダー（▼実際の医院写真に差し替え） -->
+        <div class="about-img-placeholder">🏥</div>
+
+        <!-- テキスト -->
+        <div class="about-text">
+          <h3>地域の皆様の健康を<br>守るために</h3>
+          <p>
+            <!-- ▼ クリニックのコンセプト文に変更 -->
+            吉田内科クリニックでは、患者さん一人ひとりに寄り添った丁寧な診療を心がけています。
+            内科全般から生活習慣病の管理、健康診断まで幅広く対応しております。
+          </p>
+          <p>
+            お体のことでご不安があれば、どうぞお気軽にご相談ください。
+          </p>
+          <table class="about-table">
+            <!-- ▼ 実際の情報に変更 -->
+            <tr><th>院長</th><td>吉田 〇〇（よしだ）</td></tr>
+            <tr><th>診療科目</th><td>内科・生活習慣病・健康診断</td></tr>
+            <tr><th>所在地</th><td>〒000-0000<br>〇〇県〇〇市〇〇町X-X-X</td></tr>
+            <tr><th>電話</th><td>000-000-0000</td></tr>
+            <tr><th>駐車場</th><td>〇台（無料）</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- カテゴリカード -->
+      <div class="category-grid">
+        <div class="category-card">
+          <div class="category-card-img">🩺</div>
+          <div class="category-card-body">
+            <h4>内科一般</h4>
+            <p>風邪・発熱・腹痛など日常の体調不良に幅広く対応</p>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="category-card-img">💊</div>
+          <div class="category-card-body">
+            <h4>生活習慣病</h4>
+            <p>高血圧・糖尿病・高脂血症などの管理・治療</p>
+          </div>
+        </div>
+        <div class="category-card">
+          <div class="category-card-img">📋</div>
+          <div class="category-card-body">
+            <h4>健康診断</h4>
+            <p>各種健康診断・特定健診・企業健診に対応</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================
+       アクセス
+  ==================================== -->
+  <section id="access" class="section-wrap">
+    <div class="container">
+      <div class="section-head">
+        <h2>アクセス</h2>
+        <p class="sub">Access</p>
+      </div>
+
+      <div class="access-inner">
+        <!-- マップ（▼後でGoogle Maps iframeに差し替え） -->
+        <div class="map-placeholder">
+          <span>🗺️</span>
+          <p>Googleマップをここに表示</p>
+          <p style="font-size:.75rem;">※ 後ほど埋め込みコードを追加します</p>
+        </div>
+        <!-- 差し替え例:
+        <iframe
+          src="https://www.google.com/maps/embed?pb=..."
+          width="100%" height="400"
+          style="border:0;border-radius:10px;"
+          allowfullscreen loading="lazy">
+        </iframe> -->
+
+        <!-- 所在地情報 -->
+        <div class="access-info">
+          <h3>吉田内科クリニック</h3>
+          <table class="access-table">
+            <!-- ▼ 実際の情報に変更 -->
+            <tr><th>住所</th><td>〒000-0000<br>〇〇県〇〇市〇〇町X-X-X</td></tr>
+            <tr><th>電話</th><td>000-000-0000</td></tr>
+            <tr><th>診療科目</th><td>内科・生活習慣病・健康診断</td></tr>
+            <tr><th>駐車場</th><td>〇台（無料）</td></tr>
+            <tr><th>アクセス</th><td>
+              <!-- ▼ 最寄り駅・バス停などを追加 -->
+              〇〇駅より徒歩〇分<br>
+              〇〇バス停より徒歩〇分
+            </td></tr>
+          </table>
+          <a href="https://maps.google.com/" target="_blank" rel="noopener" class="btn-access">
+            📍 Google マップで開く
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       フッター
+  ==================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-clinic-name">吉田内科クリニック</div>
+          <div class="footer-info">
+            〒000-0000 〇〇県〇〇市〇〇町X-X-X<br>
+            TEL: 000-000-0000<br>
+            診療科目：内科・生活習慣病・健康診断
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="#news">お知らせ</a></li>
+            <li><a href="#hours">診療時間</a></li>
+            <li><a href="#calendar">休診日カレンダー</a></li>
+            <li><a href="#about">医院案内</a></li>
+            <li><a href="#access">アクセス</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>診療時間</h4>
+          <ul>
+            <li><a href="#">午前：8:30〜12:00</a></li>
+            <li><a href="#">午後：15:00〜18:00</a></li>
+            <li><a href="#">水曜・土曜午後休診</a></li>
+            <li><a href="#">日曜・祝日休診</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2025 吉田内科クリニック All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ページトップボタン -->
+  <button class="pagetop" id="pagetop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+  <!-- ====================================
+       JavaScript
+  ==================================== -->
+  <script>
+    /* ============================================================
+       📝 更新ガイド
+       ============================================================
+       ① お知らせを追加・変更 → NEWS_ITEMS 配列を編集
+       ② 臨時休診日を追加   → EXTRA_CLOSED 配列に日付を追加
+       ③ 祝日を更新         → HOLIDAYS 配列を編集
+       ============================================================ */
+
+    // ── ① お知らせ（新しいものを上に追加） ──────────────────────
+    const NEWS_ITEMS = [
+      { date: '2026.05.09', badge: 'new',       text: 'ホームページを開設しました。' },
+      { date: '2026.05.01', badge: 'important', text: '発熱外来についてのご案内。発熱・咳の症状がある方はお電話ください。' },
+      { date: '2026.04.15', badge: 'info',      text: '令和8年度の特定健診が始まります。対象の方はお申し込みください。' },
+      { date: '2026.03.20', badge: 'info',      text: '花粉症の時期です。薬の処方も承っております。' },
+    ];
+
+    // ── ② 臨時休診日（年月ごとに日にちを配列で指定） ────────────
+    // 例: '2026-06': [15, 22] → 6月15日・22日が臨時休診
+    const EXTRA_CLOSED = {
+      '2026-05': [],
+      '2026-06': [],
+      '2026-07': [],
+    };
+
+    // ── ③ 2026年の祝日（適宜追加・修正） ──────────────────────
+    const HOLIDAYS = [
+      '2026-01-01','2026-01-12','2026-02-11','2026-02-23',
+      '2026-03-20','2026-04-29','2026-05-03','2026-05-04',
+      '2026-05-05','2026-05-06','2026-07-20','2026-08-11',
+      '2026-09-21','2026-09-22','2026-09-23','2026-10-12',
+      '2026-11-03','2026-11-23','2026-12-23',
+    ];
+
+    // 定期休診ルール（true = 休診）
+    const CLOSED_RULES = {
+      sunday:        true,   // 日曜
+      holiday:       true,   // 祝日
+      thirdSaturday: true,   // 第3土曜
+    };
+
+    /* ============================================================
+       お知らせ描画
+    ============================================================ */
+    const BADGE_CLASS = { important:'badge-important', info:'badge-info', new:'badge-new' };
+    const BADGE_TEXT  = { important:'重要', info:'お知らせ', new:'NEW' };
+
+    const newsList = document.getElementById('newsList');
+    NEWS_ITEMS.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'news-item';
+      li.innerHTML = `
+        <span class="news-date">${item.date}</span>
+        <span class="news-text">
+          ${item.badge ? `<span class="news-badge ${BADGE_CLASS[item.badge]}">${BADGE_TEXT[item.badge]}</span>` : ''}
+          ${item.text}
+        </span>`;
+      newsList.appendChild(li);
+    });
+
+    /* ============================================================
+       カレンダー
+    ============================================================ */
+    const today = new Date();
+    let calYear  = today.getFullYear();
+    let calMonth = today.getMonth(); // 0-indexed
+
+    function isHoliday(dateStr) { return HOLIDAYS.includes(dateStr); }
+
+    function isThirdSaturday(year, month, day) {
+      const d = new Date(year, month, day);
+      if (d.getDay() !== 6) return false;
+      // 第3土曜 = 15〜21日
+      return day >= 15 && day <= 21;
+    }
+
+    function isClosed(year, month, day) {
+      const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+      const d = new Date(year, month, day);
+      const dow = d.getDay();
+      if (CLOSED_RULES.sunday   && dow === 0) return true;
+      if (CLOSED_RULES.holiday  && isHoliday(dateStr)) return true;
+      if (CLOSED_RULES.thirdSaturday && isThirdSaturday(year, month, day)) return true;
+      // 臨時休診
+      const key = `${year}-${String(month+1).padStart(2,'0')}`;
+      const extras = EXTRA_CLOSED[key] || [];
+      if (extras.includes(day)) return true;
+      return false;
+    }
+
+    function renderCalendar() {
+      const MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+      document.getElementById('calTitle').textContent = `${calYear}年 ${MONTHS[calMonth]}`;
+
+      const firstDay = new Date(calYear, calMonth, 1).getDay();
+      const lastDate = new Date(calYear, calMonth+1, 0).getDate();
+      const prevLast = new Date(calYear, calMonth, 0).getDate();
+
+      const tbody = document.getElementById('calBody');
+      tbody.innerHTML = '';
+
+      let d = 1, nextD = 1;
+      for (let row = 0; row < 6; row++) {
+        if (d > lastDate) break;
+        const tr = document.createElement('tr');
+        for (let col = 0; col < 7; col++) {
+          const td = document.createElement('td');
+          if (row === 0 && col < firstDay) {
+            td.textContent = prevLast - (firstDay - 1 - col);
+            td.className = 'other';
+          } else if (d > lastDate) {
+            td.textContent = nextD++;
+            td.className = 'other';
+          } else {
+            td.textContent = d;
+            const dateStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+            const isToday = (d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear());
+            if (isToday) td.classList.add('today');
+            else if (isClosed(calYear, calMonth, d)) td.classList.add('closed');
+            else td.classList.add('open');
+            if (col === 0 || isHoliday(dateStr)) td.classList.add('sun');
+            if (col === 6) td.classList.add('sat');
+            d++;
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+    }
+
+    document.getElementById('calPrev').onclick = () => {
+      calMonth--;
+      if (calMonth < 0) { calMonth = 11; calYear--; }
+      renderCalendar();
+    };
+    document.getElementById('calNext').onclick = () => {
+      calMonth++;
+      if (calMonth > 11) { calMonth = 0; calYear++; }
+      renderCalendar();
+    };
+
+    renderCalendar();
+
+    /* ============================================================
+       ヒーロースライダー（右→左スワイプ）
+    ============================================================ */
+    const track  = document.getElementById('sliderTrack');
+    const dotsEl = document.getElementById('sliderDots');
+    const slides = document.querySelectorAll('.slide');
+    let current  = 0;
+    let timer;
+
+    // ドット生成
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goTo(i);
+      dotsEl.appendChild(dot);
+    });
+
+    function goTo(idx) {
+      current = (idx + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 4500);
+    }
+
+    document.getElementById('sliderPrev').onclick = () => { goTo(current - 1); startTimer(); };
+    document.getElementById('sliderNext').onclick = () => { goTo(current + 1); startTimer(); };
+    startTimer();
+
+    /* ============================================================
+       スクロール処理（ヘッダー固定 / ページトップボタン）
+    ============================================================ */
+    const header  = document.getElementById('siteHeader');
+    const pagetop = document.getElementById('pagetop');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('scrolled', y > 50);
+      pagetop.classList.toggle('show', y > 300);
+    });
+
+    /* ============================================================
+       モバイルナビ
+    ============================================================ */
+    function toggleMobileNav() {
+      document.getElementById('mobileNav').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
