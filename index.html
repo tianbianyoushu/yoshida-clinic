@@ -217,13 +217,8 @@
       justify-content: center;
       overflow: hidden;
     }
-    /* ▼ 各スライドの背景画像（後で実際の写真に差し替え） */
-    .slide:nth-child(1) { background: linear-gradient(135deg, #1A5E4A 0%, #2E8B6E 50%, #4AADA8 100%); }
-    .slide:nth-child(2) { background: linear-gradient(135deg, #1565C0 0%, #1976D2 50%, #42A5F5 100%); }
-    .slide:nth-child(3) { background: linear-gradient(135deg, #2E8B6E 0%, #1565C0 50%, #1A5E4A 100%); }
-
-    /* 実際の画像を使う場合:
-       .slide:nth-child(1) { background-image: url('images/slide1.jpg'); background-size: cover; } */
+    /* スライド背景（imgタグで対応） */
+    .slide { background: #1A5E4A; }
 
     .slide-img {
       position: absolute;
@@ -878,8 +873,9 @@
   <section id="hero">
     <div class="slider-track" id="sliderTrack">
 
-      <!-- スライド1（▼写真に変える場合: background-imageをstyleで指定 or imgタグを入れる） -->
+      <!-- スライド1 -->
       <div class="slide">
+        <img class="slide-img" src="slide1.jpg" alt="吉田内科クリニック外観">
         <div class="slide-overlay"></div>
         <div class="slide-content">
           <p class="catch">あなたの健康を、<br>地域とともに守ります。</p>
@@ -889,6 +885,7 @@
 
       <!-- スライド2 -->
       <div class="slide">
+        <img class="slide-img" src="slide2.jpg" alt="吉田内科クリニック院内">
         <div class="slide-overlay"></div>
         <div class="slide-content">
           <p class="catch">安心・丁寧な診療を<br>心がけています。</p>
@@ -898,6 +895,7 @@
 
       <!-- スライド3 -->
       <div class="slide">
+        <img class="slide-img" src="slide3.jpg" alt="吉田内科クリニック診察室">
         <div class="slide-overlay"></div>
         <div class="slide-content">
           <p class="catch">お気軽に<br>ご相談ください。</p>
