@@ -1258,17 +1258,29 @@
   ==================================== -->
   <script>
     /* ============================================================
-       スクロール位置をトップに固定（スマホの復元を無効化）
+       スクロール位置をトップに固定（QRコード・スマホ対応強化版）
     ============================================================ */
+    // ① ブラウザのスクロール復元を完全に無効化
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    // ページ読み込み直後は instant でトップへ（smooth が干渉しないよう）
+    // ② URLのハッシュ（#section）を除去してトップ固定
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    // ③ スムーススクロールを一時停止してトップへ
     document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
     window.scrollTo(0, 0);
-    // 少し後にスムーススクロールを復元
+    // ④ DOMContentLoaded・loadの両方でダブル保険
+    document.addEventListener('DOMContentLoaded', () => { window.scrollTo(0, 0); });
     window.addEventListener('load', () => {
-      document.documentElement.style.scrollBehavior = '';
+      window.scrollTo(0, 0);
+      // スムーススクロールを復元
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = '';
+        document.body.style.scrollBehavior = '';
+      }, 100);
     });
 
     /* ============================================================
