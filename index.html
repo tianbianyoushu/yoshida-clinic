@@ -1258,6 +1258,20 @@
   ==================================== -->
   <script>
     /* ============================================================
+       スクロール位置をトップに固定（スマホの復元を無効化）
+    ============================================================ */
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // ページ読み込み直後は instant でトップへ（smooth が干渉しないよう）
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    // 少し後にスムーススクロールを復元
+    window.addEventListener('load', () => {
+      document.documentElement.style.scrollBehavior = '';
+    });
+
+    /* ============================================================
        📝 更新ガイド
        ============================================================
        ① お知らせを追加・変更 → NEWS_ITEMS 配列を編集
